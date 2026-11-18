@@ -1,12 +1,7 @@
-# Inventario de Red con API REST de Cisco
+## Descripción de los scripts
 
-El script `src/05_inventario_csv.py` automatiza la generación de un inventario de red exportable a partir de los datos devueltos por la API de Cisco.
-
-Utiliza la lógica de autenticación y consulta de dispositivos/hosts de los scripts previos (`01` a `04`), procesa la respuesta JSON y escribe los atributos relevantes (hostname, dirección IP, plataforma, versión o estado) en un archivo `.csv` mediante el módulo nativo `csv` de Python.
-
-## Ejecución
-
-Desde la carpeta `src/`:
-
-```bash
-python 05_inventario_csv.py
+* `src/01_get-ticket.py`: Envía las credenciales de acceso al controlador mediante una petición `POST` y obtiene el token de autenticación (*service ticket*) necesario para realizar las consultas posteriores.
+* `src/02_get-network-device.py`: Consulta a través de la API REST el listado de dispositivos de red administrados (routers, switches) y muestra los datos obtenidos.
+* `src/03_get-host.py`: Consulta a través de la API REST los hosts finales conectados a la red detectados por el controlador.
+* `src/04_tabulate.py`: Consulta los dispositivos de red desde la API y los muestra en consola formateados como una tabla legible utilizando la librería `tabulate`.
+* `src/05_inventario_csv.py`: Automatiza la generación de un inventario de red exportable. Utiliza la lógica de autenticación y consulta de los scripts previos, procesa la respuesta JSON y escribe los atributos relevantes (hostname, dirección IP, plataforma, versión y estado) en un archivo `.csv` mediante el módulo nativo `csv` de Python.
